@@ -1,6 +1,6 @@
 #!/bin/sh
 
-VERSION='20160913009'
+VERSION='20160913012'
 
 if [ -f "/etc/squidanalyzer.version" ]; then
 	if [ "$(cat /etc/squidanalyzer.version)" = "$VERSION" ]; then
@@ -11,11 +11,22 @@ fi
 
 PF_VERSION="$(cat /etc/version | cut -f 1,2 -d '.')"
 
+if [ ! "$PF_VERSION" == "2.3" ]; then
+	echo "Not working with this version"
+	exit 2
+fi
+
 
 URL='https://pkg.mundounix.com.br/pfsense/squidanalyzer/'
 
-fetch -q -o /usr/local/pkg $URL/squidanalyzer.inc
-fetch -q -o /usr/local/pkg $URL/squidanalyzer.xml
+if [ ! "$(/usr/sbin/pkg info | grep squidanalyzer-6.5)" ]; then
+	ASSUME_ALWAYS_YES=YES
+	export ASSUME_ALWAYS_YES
+	/usr/sbin/pkg add -v https://pkg.mundounix.com.br/pfsense/packages/amd64/All/squidanalyzer-6.5.txz
+fi
+
+fetch -q -o /usr/local/pkg/ $URL/squidanalyzer.inc
+fetch -q -o /usr/local/pkg/ $URL/squidanalyzer.xml
 
 /usr/local/sbin/pfSsh.php <<EOF
 \$sa = false;
@@ -37,11 +48,6 @@ exec;
 exit
 EOF
 
-if [ "$PF_VERSION" == "2.2" ]; then
-	if [ ! "$(/usr/local/sbin/pfSsh.php playback listpkg | grep 'Squid3')" ]; then
-	        /usr/local/sbin/pfSsh.php playback installpkg "Squid3"
-	fi
-fi
 
 if [ "$PF_VERSION" == "2.3" ]; then
 	if [ ! "$(/usr/sbin/pkg info | grep pfSense-pkg-Squid)" ]; then
