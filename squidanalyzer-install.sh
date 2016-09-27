@@ -22,7 +22,7 @@ URL='https://pkg.mundounix.com.br/pfsense/squidanalyzer/'
 if [ ! "$(/usr/sbin/pkg info | grep squidanalyzer-6.5)" ]; then
 	ASSUME_ALWAYS_YES=YES
 	export ASSUME_ALWAYS_YES
-	/usr/sbin/pkg add -v https://pkg.mundounix.com.br/pfsense/packages/amd64/All/squidanalyzer-6.5.txz
+	/usr/sbin/pkg add https://pkg.mundounix.com.br/pfsense/packages/amd64/All/squidanalyzer-6.5.txz
 fi
 
 fetch -q -o /usr/local/pkg/ $URL/squidanalyzer.inc
