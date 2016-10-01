@@ -29,7 +29,7 @@
 		</tab>
     <tab>
       <text>SquidAnalyzer Report</text>
-      <url>/squidanalyzer</url>
+      <url>/squidreport</url>
     </tab>
 	</tabs>
 	<fields>
