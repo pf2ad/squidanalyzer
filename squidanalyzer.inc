@@ -30,21 +30,14 @@ function validate_form_sa($post, $input_errors) {
   }
 }
 
-function run_sa() {
-  if ( file_exists(SACONFIG) ) {
-    mwexec("/usr/local/bin/squid-analyzer -c " . SACONFIG);
-    $input_errors[] = 'Report make in <a href="/squidreport">SquidAnalyzer Report page</a>';
-  } else {
-    $input_errors[] = 'Your need config parameters first !';
-  }
-}
-
 function sync_squidanalyzer() {
 
   global $g, $config;
 
   if ($_POST['Submit'] == 'Force update now') {
-    run_sa();
+      if ( file_exists(SACONFIG) ) {
+        mwexec("/usr/local/bin/squid-analyzer -c " . SACONFIG);
+      }
   }
 
   if (($_POST['Submit'] == 'Save') || !isset($_POST['Submit'])) {
