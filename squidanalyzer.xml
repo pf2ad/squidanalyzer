@@ -135,6 +135,7 @@
         How often should this report be updated.<br />
         Valid options are: minutes(m), hours(h), days(d)<br />
         <strong>Example:</strong> To update every hour, use 1h<br /><br />
+        <input type="submit" name="Submit" value="Force update now" /><br />
         ]]>
       </description>
       <default_value>1h</default_value>
