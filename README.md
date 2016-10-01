@@ -8,4 +8,12 @@ The script is automatic, meaning you need not install anything, he will have to 
 fetch -q -o - https://pkg.mundounix.com.br/pfsense/squidanalyzer/squidanalyzer-install.sh | sh
 ```
 
-Powered by: BR-SUPORTE -- Anderson <anderson@brsuporte.com.br>
+Powered by:
+===========
+> Anderson - Oliveira
+
+> Empresa: BR Suporte Informática
+
+> Site: www.brsuporte.com.br
+
+> Email: anderson@brsuporte.com.br
