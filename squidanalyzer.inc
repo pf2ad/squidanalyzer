@@ -54,13 +54,14 @@ function sync_squidanalyzer() {
     $sa_dateformat = $settings['dateformat'];
     $sa_topurluser = $settings['topurluser'];
     $sa_locale = $settings['locale'];
+    $sa_useclientdns = ($settings['useclientdnsname'] == 'on') ? '1':'0';
     $sa_urlreport = ($settings['urlreport'] == 'on') ? '1':'0';
     $sa_userreport = ($settings['userreport'] == 'on') ? '1':'0';
     $sa_config = <<<EOD
 Output	/usr/local/www/squidreport
 WebUrl	/squidreport
 LogFile	$SquidLog
-UseClientDNSName	0
+UseClientDNSName	$sa_useclientdns
 DNSLookupTimeout	0.0001
 OrderNetwork	bytes
 OrderUser	bytes
