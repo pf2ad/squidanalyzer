@@ -1,6 +1,6 @@
 #!/bin/sh
 
-VERSION='20160913012'
+VERSION='20161001003'
 
 if [ -f "/etc/squidanalyzer.version" ]; then
 	if [ "$(cat /etc/squidanalyzer.version)" = "$VERSION" ]; then
